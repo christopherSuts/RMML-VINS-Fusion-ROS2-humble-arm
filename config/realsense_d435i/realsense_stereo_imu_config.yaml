@@ -2,7 +2,7 @@
 
 #common parameters
 #support: 1 imu 1 cam; 1 imu 2 cam: 2 cam; 
-imu: 1         
+imu: 0         
 num_of_cam: 2  
 
 imu_topic: "/camera/imu"
@@ -14,6 +14,11 @@ cam0_calib: "left.yaml"
 cam1_calib: "right.yaml"
 image_width: 640
 image_height: 480
+
+# GPU acceleration
+use_gpu         : 0
+use_gpu_acc_flow: 0
+use_gpu_ceres   : 0
    
 
 # Extrinsic parameter between IMU and Camera.
@@ -50,7 +55,7 @@ max_cnt: 150            # max feature number in feature tracking
 min_dist: 30            # min distance between two features 
 freq: 10                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image 
 F_threshold: 1.0        # ransac threshold (pixel)
-show_track: 0           # publish tracking image as topic
+show_track: 1           # publish tracking image as topic
 flow_back: 1            # perform forward and backward optical flow to improve feature tracking accuracy
 
 #optimization parameters
