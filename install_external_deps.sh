@@ -8,7 +8,7 @@ sudo apt-get install wget unzip
 
 sudo apt install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev python3-pip python3-numpy
 git clone https://github.com/opencv/opencv.git -b 3.4.1 --depth 1
-git clone https://github.com/opencv/opencv_contrib.git -b $VERSION --depth 1
+git clone https://github.com/opencv/opencv_contrib.git -b 3.4.1 --depth 1
 
 cd opencv
 mkdir build
