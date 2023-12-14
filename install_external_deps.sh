@@ -24,7 +24,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D PYTHON3_EXECUTABLE=$(which python3) \
 -D PYTHON3_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
 -D PYTHON3_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
--D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/ 
+-D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/ \
+../
+
 
 make -j $(nproc)
 sudo make install
