@@ -17,7 +17,7 @@ Code based in large part on [this repository](https://github.com/zinuok/VINS-Fus
 
 ### Prerequisites
 - **System**
-  - Ubuntu 22.04
+  - Ubuntu 20.04
   - ROS2 humble
 - **Libraries**
   - OpenCV & cv_bridge for ROS2 Humble
