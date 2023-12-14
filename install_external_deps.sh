@@ -30,6 +30,8 @@ make -j $(nproc)
 sudo make install
 sudo ldconfig
 
+cd .. && cd ..
+
 # ceres solver
 sudo apt-get install -y cmake libgoogle-glog-dev libatlas-base-dev libsuitesparse-dev
 wget http://ceres-solver.org/ceres-solver-2.1.0.tar.gz
