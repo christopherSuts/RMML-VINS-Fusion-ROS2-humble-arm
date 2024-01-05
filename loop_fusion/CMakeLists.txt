@@ -55,6 +55,9 @@ install(
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(DIRECTORY support_files
+        DESTINATION share/${PROJECT_NAME}/..)
+
 
 
 #install(TARGETS
