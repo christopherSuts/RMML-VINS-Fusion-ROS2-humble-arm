@@ -18,11 +18,17 @@
 #include <fstream>
 #include <map>
 
+// try qos
+#include <rclcpp/qos.hpp>
+// try qos
+
 using namespace std;
 
 #define ROS_INFO RCUTILS_LOG_INFO
 #define ROS_WARN RCUTILS_LOG_WARN
 #define ROS_ERROR RCUTILS_LOG_ERROR
+
+const rclcpp::QoS BEST_EFFORT_QOS = rclcpp::QoS(rclcpp::KeepLast(100)).best_effort();
 
 const double FOCAL_LENGTH = 460.0;
 const int WINDOW_SIZE = 10;

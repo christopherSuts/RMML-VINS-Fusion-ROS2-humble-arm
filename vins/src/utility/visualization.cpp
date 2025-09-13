@@ -9,6 +9,9 @@
 
 #include "visualization.h"
 
+extern std::string world_frame_id;
+extern std::string body_frame_id;
+
 // using namespace ros;
 using namespace Eigen;
 rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr pub_odometry, pub_latest_odometry;
@@ -138,8 +141,8 @@ void pubOdometry(const Estimator &estimator, const std_msgs::msg::Header &header
     {
         nav_msgs::msg::Odometry odometry;
         odometry.header = header;
-        odometry.header.frame_id = "world";
-        odometry.child_frame_id = "world";
+        odometry.header.frame_id = world_frame_id;
+        odometry.child_frame_id = body_frame_id;
         Quaterniond tmp_Q;
         tmp_Q = Quaterniond(estimator.Rs[WINDOW_SIZE]);
         odometry.pose.pose.position.x = estimator.Ps[WINDOW_SIZE].x();

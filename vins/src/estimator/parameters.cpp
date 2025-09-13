@@ -41,6 +41,8 @@ int STEREO;
 int USE_IMU;
 int MULTIPLE_THREAD;
 map<int, Eigen::Vector3d> pts_gt;
+std::string world_frame_id;
+std::string body_frame_id;
 std::string IMAGE0_TOPIC, IMAGE1_TOPIC;
 std::string FISHEYE_MASK;
 std::vector<std::string> CAM_NAMES;
@@ -83,6 +85,9 @@ void readParameters(std::string config_file)
     {
         std::cerr << "ERROR: Wrong path to settings" << std::endl;
     }
+
+    fsSettings["world_frame_id"] >> world_frame_id;
+    fsSettings["body_frame_id"] >> body_frame_id;
 
     fsSettings["image0_topic"] >> IMAGE0_TOPIC;
     fsSettings["image1_topic"] >> IMAGE1_TOPIC;
