@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
+list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake/geographiclib")
 project(global_fusion)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -16,34 +17,31 @@ find_package(geometry_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
 
 find_package(Ceres REQUIRED)
+find_package(GeographicLib REQUIRED) # <-- ADD THIS LINE
 
-add_subdirectory(./ThirdParty/GeographicLib/)
+# add_subdirectory(./ThirdParty/GeographicLib/) # <-- KEEP THIS COMMENTED OUT
 
 include_directories(
-  # ${catkin_INCLUDE_DIRS}
   ${CERES_INCLUDE_DIRS}
-  ./ThirdParty/GeographicLib/include/
+  ${GEOGRAPHICLIB_INCLUDE_DIRS} 
+  # ADD THIS LINE to find LocalCartesian.hpp
+  "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/GeographicLib/include"
 )
 
+add_executable(global_fusion_node
+    src/globalOptNode.cpp
+    src/globalOpt.cpp)
 
-
-
-add_executable(global_fusion_node 
-	src/globalOptNode.cpp
-	src/globalOpt.cpp)
-
-# added from DEBUG
 ament_target_dependencies(global_fusion_node rclcpp nav_msgs geometry_msgs sensor_msgs visualization_msgs rclpy)
 
-target_link_libraries(global_fusion_node ${CERES_LIBRARIES} libGeographiccc) # ${catkin_LIBRARIES})
-
+# Link to the official system library instead of the local one
+target_link_libraries(global_fusion_node ${CERES_LIBRARIES} Geographic) 
 
 # Install
 install(TARGETS
     global_fusion_node
     DESTINATION lib/${PROJECT_NAME}
 )
-
 
 install(TARGETS global_fusion_node
     ARCHIVE DESTINATION lib
@@ -54,7 +52,5 @@ install(TARGETS global_fusion_node
 install(TARGETS global_fusion_node
     RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
-
-
 
 ament_package()
